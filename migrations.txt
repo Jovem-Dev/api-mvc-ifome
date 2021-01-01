@@ -1,0 +1,5 @@
+yarn add sequelize
+yarn sequelize migration:create --name=create-pedidos
+fazer o mapeamento no up da migration com o create table
+yarn sequelize db:migrate
+yarn sequelize db:migrate:undo -- desfaz a ultima migrate caso voce tenha feito algo errado
