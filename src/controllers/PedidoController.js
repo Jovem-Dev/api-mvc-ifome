@@ -6,7 +6,7 @@ module.exports = {
     async countAndamento(req,res){
         const pedidos = await Pedidos.count({
             where:{
-                restaurante: req.body.restaurante,
+                restaurante: req.params.restaurante,
                 [Op.and]: [
                     { status: 'Andamento' },
                 ]
@@ -18,7 +18,7 @@ module.exports = {
     async countEntregues(req,res){
         const pedidos = await Pedidos.count({
             where:{
-                restaurante: req.body.restaurante,
+                restaurante: req.params.restaurante,
                 [Op.and]: [
                     { status: 'Entregue' },
                 ]
@@ -30,7 +30,7 @@ module.exports = {
     async countPendentes(req,res){
         const pedidos = await Pedidos.count({
             where:{
-                restaurante: req.body.restaurante,
+                restaurante: req.params.restaurante,
                 [Op.and]: [
                     { status: 'Pendente' },
                 ]
@@ -39,22 +39,24 @@ module.exports = {
         return res.json(pedidos)
     },
 
-    async mesGrafico(req,res){
+
+    async entregueRestaurante(req,res){
         const pedidos = await Pedidos.findAll({
             where:{
-                restaurante: req.body.restaurante,
+                restaurante: req.params.restaurante,
                 [Op.and]: [
-                    { mes: req.body.mes },
+                    { status: 'Entregue' },
                 ]
             }
         });
         return res.json(pedidos)
     },
 
-    async entregueRestaurante(req,res){
+    
+    async entregueRestauranteDetalhe(req,res){
         const pedidos = await Pedidos.findAll({
             where:{
-                restaurante: req.body.restaurante,
+                id: req.params.id,
                 [Op.and]: [
                     { status: 'Entregue' },
                 ]
@@ -66,7 +68,7 @@ module.exports = {
     async andamentoRestaurante(req,res){
         const pedidos = await Pedidos.findAll({
             where:{
-                restaurante: req.body.restaurante,
+                restaurante: req.params.restaurante,
                 [Op.and]: [
                     { status: 'Andamento' },
                 ]
@@ -75,10 +77,20 @@ module.exports = {
         return res.json(pedidos)
     },
 
+    async andamentoRestauranteDetalhe(req,res){
+        const pedidos = await Pedidos.findAll({
+            where:{
+                id: req.params.id,
+            }
+        });
+        return res.json(pedidos)
+    },
+
+
     async pendenteRestaurante(req,res){
         const pedidos = await Pedidos.findAll({
             where:{
-                restaurante: req.body.restaurante,
+                restaurante: req.params.restaurante,
                 [Op.and]: [
                     { status: 'Pendente' },
                 ]
@@ -90,7 +102,7 @@ module.exports = {
     async entregueUsuario(req,res){
         const pedidos = await Pedidos.findAll({
             where:{
-                usuario: req.body.usuario,
+                usuario: req.params.usuario,
                 [Op.and]: [
                     { status: 'Entregue' },
                 ]
@@ -102,7 +114,7 @@ module.exports = {
     async andamentoPendenteUsuario(req,res){
         const pedidos = await Pedidos.findAll({
             where:{
-                usuario: req.body.usuario,
+                usuario: req.params.usuario,
                 [Op.or]: [
                     { status: 'Andamento' },
                     { status: 'Pendente' }
@@ -276,7 +288,7 @@ module.exports = {
     async delete(req,res){
         const pedidos = await Pedidos.destroy({
             where: {
-              id: req.body.id
+              id: req.params.id
             }
         });
         return res.json(pedidos)
@@ -302,7 +314,7 @@ module.exports = {
                 notificacao: req.body.endereco,
             }, {
                 where:{
-                    id: req.body.id
+                    id: req.params.id
                 }
             }
         )

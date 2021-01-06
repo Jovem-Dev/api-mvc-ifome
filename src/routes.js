@@ -26,32 +26,26 @@ routes.post('/loginAdministrador', AdministradorController.login );
 routes.post('/pedidos', PedidoControler.store );
 routes.post('/pedidosPagarme', PedidoControler.storePagarme );
 routes.get('/pedidos', PedidoControler.index );
-routes.get('/pedidos/andamentoRestaurante', PedidoControler.andamentoRestaurante);
-routes.get('/pedidos/entregueRestaurante', PedidoControler.entregueRestaurante );
-routes.get('/pedidos/pendenteRestaurante', PedidoControler.pendenteRestaurante )
-routes.get('/pedidos/entregueUsuario', PedidoControler.entregueUsuario);
-routes.get('/pedidos/andamentoPendenteUsuario', PedidoControler.andamentoPendenteUsuario );
-routes.get('/pedidos/mes', PedidoControler.mesGrafico );
-routes.get('/pedidos/countEntregues', PedidoControler.countEntregues );
-routes.get('/pedidos/countPendentes', PedidoControler.countPendentes );
-routes.get('/pedidos/countAndamento', PedidoControler.countAndamento );
+routes.get('/pedidos/andamentoRestaurante/:restaurante', PedidoControler.andamentoRestaurante);
+routes.get('/pedidos/andamentoRestauranteDetalhe/:id', PedidoControler.andamentoRestauranteDetalhe);
+routes.get('/pedidos/entregueRestaurante/:restaurante', PedidoControler.entregueRestaurante );
+routes.get('/pedidos/entregueRestauranteDetalhe/:id', PedidoControler.entregueRestauranteDetalhe );
+routes.get('/pedidos/pendenteRestaurante/:restaurante', PedidoControler.pendenteRestaurante )
+routes.get('/pedidos/entregueUsuario/:usuario', PedidoControler.entregueUsuario);
+routes.get('/pedidos/andamentoPendenteUsuario/:usuario', PedidoControler.andamentoPendenteUsuario );
+routes.get('/pedidos/countEntregues/:restaurante', PedidoControler.countEntregues );
+routes.get('/pedidos/countPendentes/:restaurante', PedidoControler.countPendentes );
+routes.get('/pedidos/countAndamento/:restaurante', PedidoControler.countAndamento );
 routes.get('/pedidos/:id', PedidoControler.findById );
 routes.get('/pedidos/nome', PedidoControler.findByNome );
-routes.put('/pedidos', PedidoControler.update );
-routes.delete('/pedidos', PedidoControler.delete );
-
-// Administrador
-routes.post('/administrador', AdministradorController.store );
-routes.get('/administrador', AdministradorController.index );
-routes.get('/administrador/:id', AdministradorController.findById );
-routes.put('/administrador', AdministradorController.update );
-routes.delete('/administrador', AdministradorController.delete );
+routes.put('/pedidos/:id', PedidoControler.update );
+routes.delete('/pedidos/:id', PedidoControler.delete );
 
 //Cartoes
 routes.post('/cartoes', CartoesController.store );
 routes.post('/cartoesPagarme', CartoesController.storePagarme );
 routes.get('/cartoes', CartoesController.index );
-routes.get('/cartoesNome', CartoesController.cartoesNome );
+routes.get('/cartoesNome/:nome', CartoesController.cartoesNome );
 routes.get('/cartoes/:id', CartoesController.findById );
 routes.put('/cartoes', CartoesController.update );
 routes.delete('/cartoes', CartoesController.delete );
@@ -65,7 +59,7 @@ routes.delete('/categoria', CategoriaController.delete )
 
 // Endereco
 routes.post('/endereco', EnderecoController.store );
-routes.get('/endereco', EnderecoController.index );
+routes.get('/endereco/:usuario', EnderecoController.index );
 routes.get('/endereco/:id', EnderecoController.findById );
 routes.put('/endereco', EnderecoController.update );
 routes.delete('/endereco', EnderecoController.delete );
@@ -76,24 +70,23 @@ routes.get('/ofertas', OfertasController.index );
 routes.get('/ofertas/count', OfertasController.count );
 routes.get('/ofertas/:id', OfertasController.findById );
 routes.put('/ofertas', OfertasController.update );
-routes.delete('/ofertas', OfertasController.delete );
+routes.delete('/ofertas/:id', OfertasController.delete );
 
 
 // Perfil
 routes.post('/perfil', PerfilController.store );
 routes.get('/perfil', PerfilController.index );
 routes.get('/perfil/:id', PerfilController.findById );
-routes.put('/perfil', PerfilController.update );
+routes.put('/perfil/:id', PerfilController.update );
 routes.delete('/perfil', PerfilController.delete );
 
 // Promocoes
 routes.post('/promocoes', PromocoesController.store );
 routes.get('/promocoes', PromocoesController.index );
-routes.get('/promocoes/count', PromocoesController.count );
 routes.get('/promocoes/:id', PromocoesController.findById );
 routes.get('/promocoes/nome', PromocoesController.findByNome );
 routes.put('/promocoes', PromocoesController.update );
-routes.delete('/promocoes', PromocoesController.delete );
+routes.delete('/promocoes/:id', PromocoesController.delete );
 
 // Restaurantes
 routes.post('/restaurante', RestauranteController.store );

@@ -54,7 +54,7 @@ module.exports = {
     async delete(req,res){
         const ofertas = await Ofertas.destroy({
             where: {
-              id: req.body.id
+              id: req.params.id
             }
         });
         return res.json(ofertas)

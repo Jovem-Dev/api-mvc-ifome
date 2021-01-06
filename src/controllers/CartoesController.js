@@ -6,7 +6,7 @@ module.exports = {
     async cartoesNome(req,res){
         const cartoes = await Cartoes.findAll({
             where:{
-                card_holder_name: req.body.card_holder_name
+                card_holder_name: req.params.nome
             }
         });
         return res.json(cartoes)

@@ -52,7 +52,7 @@ module.exports = {
     async delete(req,res){
         const promocoes = await Promocoes.destroy({
             where: {
-              id: req.body.id
+              id: req.params.id
             }
         });
         return res.json(promocoes)
